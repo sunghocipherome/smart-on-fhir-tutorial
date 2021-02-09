@@ -20,51 +20,88 @@
       <div class="bounce3"></div>
     </div>
     <div id='holder' >
-      <h2>Example-SMART-App</h2>
+      <div data-role="page" class="jqm-demos">
+        <div data-role="header" class="jqm-header" data-position="fixed">
+            
+            <a href="#" class="jqm-navmenu-link ui-btn"><img src="/static/img/report/ic_menu.png" width="23.25px" height="19.5px"></a>
+            <div class="div-patient-id">
+                <span class="font-style-subtitle font-color-wh">111111</span>
+            </div>
+            <div class="div-patient-info">
+                <span class="font-style-caption2 font-color-cg">Report Date</span><br/>
+                <span class="font-style-body1 font-color-bk"></span>
+            </div>
+            
+            <div class="div-logo">
+                <img src="/static/img/report/ic_symbol_menu.png" width="30px" height="35px">
+                <span class="font-style-subtitle font-color-navy">Lighthouse</span>
+            </div>
+        </div><!-- /header -->
 
-      <h2>Patient Resource</h2>
-      <table>
-        <tr>
-          <th>First Name:</th>
-          <td id='fname'></td>
-        </tr>
-        <tr>
-          <th>Last Name:</th>
-          <td id='lname'></td>
-        </tr>
-        <tr>
-          <th>Gender:</th>
-          <td id='gender'></td>
-        </tr>
-        <tr>
-          <th>Date of Birth:</th>
-          <td id='birthdate'></td>
-        </tr>
-      </table>
-      <h2>Observation Resource</h2>
-      <table>
-        <tr>
-          <th>Height:</th>
-          <td id='height'></td>
-        </tr>
-        <tr>
-          <th>Systolic Blood Pressure:</th>
-          <td id='systolicbp'></td>
+        <div role="main" class="ui-content jqm-content">
+            
 
-        </tr>
-        <tr>
-          <th>Diastolic Blood Pressure:</th>
-          <td id='diastolicbp'></td>
-        </tr>
-        <tr>
-          <th>LDL:</th>
-          <td id='ldl'></td>
-        </tr>
-        <tr>
-          <th>HDL:</th>
-          <td id='hdl'></td>
-        </tr>
-      </table>
+            <div class="jqm-footer">
+                <img src="/static/img/report/img_cipherome_wordmark.png" height="20px">
+                <div>
+                    <span class="font-style-footer font-color-cg"><b>Lighthouse Pharmacogenomics Report</b></span>
+                </div>
+                <span class="font-style-footer font-color-cg">The information contained in the Lighthouse report is intended to be used by a licensed physician or licensed healthcare professional and is meant to enhance, not be a substitute for, professional medical advice. Prescribing medications should only be done after consulting with a licensed physician or licensed healthcare professional, and must take into account the patient’s medical history and concomitant medications.</span>
+            </div><!-- /footer -->
+        </div><!-- /content -->
+
+        <div data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a">
+            <div class="panel-menu">
+                <img src="/static/img/report/ic_menu.png" width="23.25px" height="19.5px">
+            </div>
+            <div class="category">
+                <div class="card">
+                    
+                    <div class="li-header selected" id="heading_summary"
+                        onclick="">
+                        <div class="btn">
+                            <span class="font-style-subtitle font-color-wh">Summary</span>
+                        </div>
+                    </div>
+                    
+                    <div class="li-header not-select" id="heading_summary"
+                        onclick="">
+                        <div class="btn">
+                            <span class="font-style-subtitle font-color-bk">Summary</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="category">
+                <div class="card">
+                    
+                    <div class="li-header not-select" id="heading_cadlology">
+                        <div class="btn">
+                            <span class="font-style-subtitle font-color-bk">Cardiology</span>
+                        </div>
+                    </div>
+                    
+                    <div class="li-header selected" id="heading_cadlology">
+                        <div class="btn">
+                            <span class="font-style-subtitle font-color-wh">Cardiology</span>
+                        </div>
+                    </div>
+                    
+                    <div id="collapse_cardiology">
+                        <div class="card-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-download">
+                <a href="" target="_blank">
+                <img src="/static/img/report/ic_download.png" width="18px" height="16px"> <span class="font-style-caption font-color-wh">PDF File</span>
+                </a>
+            </div>
+        </div><!-- /panel -->
+        
+    </div>
     </div>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
