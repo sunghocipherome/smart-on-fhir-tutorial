@@ -29,11 +29,13 @@
             
             <a href="#" class="jqm-navmenu-link ui-btn"><img src="./src/images/ic_menu.png" width="23.25px" height="19.5px"></a>
             <div class="div-patient-id">
-                <span class="font-style-subtitle font-color-wh">111111</span>
+                <span class="font-style-subtitle font-color-wh">{{json_lighthouse.patient_info.external_ref}}</span>
             </div>
             <div class="div-patient-info">
                 <span class="font-style-caption2 font-color-cg">Report Date</span><br/>
-                <span class="font-style-body1 font-color-bk"></span>
+                {% set report_date = json_lighthouse.report_info.report_generated.split('/') %}
+                {% set text_month = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %}
+                <span class="font-style-body1 font-color-bk">{{text_month[(report_date[0]|int)]}} {{ report_date[1] }}, {{report_date[2]}}</span>
             </div>
             
             <div class="div-logo">
@@ -43,12 +45,16 @@
         </div><!-- /header -->
 
         <div role="main" class="ui-content jqm-content">
-            
+            {% if target == "summary" %}
+                {% include 'report/report_summary.html' %}
+            {% else %}
+                {% include 'report/report_selected_drug.html' %}
+            {% endif %}
 
             <div class="jqm-footer">
                 <img src="./src/images/img_cipherome_wordmark.png" height="20px">
                 <div>
-                    <span id="fname"></span>
+                    <span class="font-style-footer font-color-cg"><b>Lighthouse Pharmacogenomics Report</b></span>
                 </div>
                 <span class="font-style-footer font-color-cg">The information contained in the Lighthouse report is intended to be used by a licensed physician or licensed healthcare professional and is meant to enhance, not be a substitute for, professional medical advice. Prescribing medications should only be done after consulting with a licensed physician or licensed healthcare professional, and must take into account the patient’s medical history and concomitant medications.</span>
             </div><!-- /footer -->
@@ -60,52 +66,83 @@
             </div>
             <div class="category">
                 <div class="card">
-                    
+                    {% if target == "summary" %}
                     <div class="li-header selected" id="heading_summary"
-                        onclick="">
+                        onclick="window.location.replace('/dashboard/report_viewer/{{ member_service_id }}/summary');">
                         <div class="btn">
                             <span class="font-style-subtitle font-color-wh">Summary</span>
                         </div>
                     </div>
-                    
+                    {% else %}
                     <div class="li-header not-select" id="heading_summary"
-                        onclick="">
+                        onclick="window.location.replace('/dashboard/report_viewer/{{ member_service_id }}/summary');">
                         <div class="btn">
                             <span class="font-style-subtitle font-color-bk">Summary</span>
                         </div>
                     </div>
-                    
+                    {% endif %}
                 </div>
             </div>
             <div class="category">
                 <div class="card">
-                    
+                    {% if target == "summary" %}
                     <div class="li-header not-select" id="heading_cadlology">
                         <div class="btn">
                             <span class="font-style-subtitle font-color-bk">Cardiology</span>
                         </div>
                     </div>
-                    
+                    {% else %}
                     <div class="li-header selected" id="heading_cadlology">
                         <div class="btn">
                             <span class="font-style-subtitle font-color-wh">Cardiology</span>
                         </div>
                     </div>
-                    
+                    {% endif %}
                     <div id="collapse_cardiology">
                         <div class="card-body">
+                            <ul>
+                                {% for drug, guidelines in json_lighthouse.guidelines.items() %}
+                                    {% for guideline in guidelines %}
+                                        {% if guideline.recommendation.applicable != False and guideline.recommendation.content_curated == true %}
+        
+                                        {% if drug == target %}
+                                        <li onclick="window.location.replace('/dashboard/report_viewer/{{ member_service_id }}/{{drug}}');">
+                                            <div class="li-item-selected">
+                                                <span class="font-style-body1 font-color-m">{{drug}}</span>
+                                            </div>
+                                        </li>
+                                        {% else %}
+                                            {% if target == "summary" %}
+                                        <li onclick="window.location.replace('/dashboard/report_viewer/{{ member_service_id }}/{{drug}}');">
+                                            <div class="li-item-no">
+                                                <span class="font-style-body2 font-color-cg">{{drug}}</span>
+                                            </div>
+                                        </li>
+                                            {% else %}
+                                        <li onclick="window.location.replace('/dashboard/report_viewer/{{ member_service_id }}/{{drug}}');">
+                                            <div class="li-item">
+                                                <span class="font-style-body2 font-color-cg">{{drug}}</span>
+                                            </div>
+                                        </li>
+                                            {% endif %}
+                                        {% endif %}
+                                
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="btn-download">
-                <a href="" target="_blank">
+                <a href="{{ json_lighthouse.report_info.download_url }}" target="_blank">
                 <img src="./src/images/ic_download.png" width="18px" height="16px"> <span class="font-style-caption font-color-wh">PDF File</span>
                 </a>
             </div>
         </div><!-- /panel -->
         
-    </div>
+      </div>
     </div>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
