@@ -1,177 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' /> -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
     <title>sunghocipherome Example-SMART-App</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
     <link rel='stylesheet' type='text/css' href='./src/css/example-smart-app.css'>
-    <link rel="stylesheet" type='text/css' href='./src/css/jquery.mobile-1.4.5.min.css'>
-    <link rel="stylesheet" type='text/css' href='./src/css/jqm-demos.css'>
-    <link rel="stylesheet" type='text/css' href='./src/css/report_viewer.css'>
     <!--
       Temporarily disable cerner-smart-embeddable-lib
       <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
     -->
   </head>
   <body>
-    <div id='errors'></div>
+    <div id='errors'>
+    </div>
     <div id="loading" class="spinner">
       <div class="bounce1"></div>
       <div class="bounce2"></div>
       <div class="bounce3"></div>
     </div>
-    <div id='holder' data-role="page" class="jqm-demos">
-      <div data-role="header" class="jqm-header" data-position="fixed">
-          
-          <a href="#" class="jqm-navmenu-link ui-btn"><img src="./src/images/ic_menu.png" width="23.25px" height="19.5px"></a>
-          <div class="div-patient-id">
-              <span id="fname" class="font-style-subtitle font-color-wh"></span>
-          </div>
-          <div class="div-patient-info">
-              <span class="font-style-caption2 font-color-cg">Report Date</span><br/>
-              <span class="font-style-body1 font-color-bk">February 10, 2021</span>
-          </div>
-          
-          <div class="div-logo">
-              <img src="./src/images/ic_symbol_menu.png" width="30px" height="35px">
-              <span class="font-style-subtitle font-color-navy">Lighthouse</span>
-          </div>
-      </div><!-- /header -->
+    <div id='holder' >
+      <h2>Example-SMART-App</h2>
 
-      <div role="main" class="ui-content jqm-content">
-        <div class="div-box">
-                   
-              <div class="div-content-title">
-                  <span class="font-style-t1 font-color-m">Lighthouse Pharmacogenomic Report</span>
-              </div>
-          <!--
-              <div class="btn-download" style="float:right;position:relative;color:white;">
-                  <a href="{{ json_lighthouse.report_info.download_url }}" target="_blank"><span
-                          class="font-style-subtitle font-color-wh">PDF Report</span></a>
-              </div>
-          -->
-              <div class="div-introduction">
-                  <span class="font-style-subtitle font-color-bk">Cipherome, Inc.</span>
-                  <span class="font-style-subtitle2 font-color-bk">2860 Zanker Rd STE 105,</span>
-                  <span class="font-style-subtitle2 font-color-bk">San Jose, CA 95134</span>
-                  <span class="font-style-subtitle2 font-color-bk">www.cipherome.com</span>
-                  <span class="font-style-subtitle2 font-color-bk">Laboratory: Genemarkers, LLC.</span>
-                  <br/>
-                  <span class="font-style-subtitle2 font-color-bk">
-                      Cipherome's Lighthouse Test compares your patient's DNA sample with our comprehensive database, and references evidence-based pharmacogenomics guidelines from CPIC and FDA package inserts to help guide drug selection. This report contains a concise summary followed by a more detailed referenced explanations to guide your clinical decisions.
-                  </span>
-              </div>
-          
-              <div class="div-content-title margin-top">
-                  <span class="font-style-t1 font-color-m">Summary of Evaluated Pharmacogene</span>
-              </div>
-          
-              <div class="div-cards">
-                  <div>
-                      <span class="font-style-caption2 font-color-bk">All</span>
-                      <span class="font-style-lt font-color-bk">1</span>
-                  </div>
-                  <div>
-                      <span class="font-style-caption2 font-color-bk">Warning</span>
-                      <span class="font-style-lt font-color-bk">1</span>
-                  </div>
-              </div>
-          <div class="div-list">
-              <div class="div-table-header">
-                  <div>&nbsp;</div>
-                  <div>
-                      <span class="font-style-caption2 font-color-red">Drug</span>
-                  </div>
-                  <div>
-                      <span class="font-style-caption2 font-color-bk">Implication</span>
-                  </div>
-                  <div>
-                      <span class="font-style-caption2 font-color-bk">Gene - Resultant Diplotype</span>
-                  </div>
-                  <div>
-                      <span class="font-style-caption2 font-color-bk">Phenotype</span>
-                  </div>
-              </div>
-          
-              <table class="table-drug-class">
-                  <tbody>
-                    <tr>    
-                      <td class="td-1">
-                          <span class="font-style-body1 font-color-m">Cardiology</span>
-                      </td>
-                        <td class="td-2">
-                            <span class="font-style-body1 font-color-bk">Clopidogrel</span>
-                        </td>
-                        <td class="td-3">
-                            <span class="font-style-body2 font-color-bk">Standard</span>
-                        </td>
-                        <td class="td-4">
-                            <span class="font-style-body2 font-color-bk">CYP2D6 *1/*10</span>
-                        </td>
-                        <td class="td-5">
-                            <span class="font-style-body2 font-color-bk">Normal</span>
-                        </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-          </div>
+      <h2>Patient Resource</h2>
+      <table>
+        <tr>
+          <th>First Name:</th>
+          <td id='fname'></td>
+        </tr>
+        <tr>
+          <th>Last Name:</th>
+          <td id='lname'></td>
+        </tr>
+        <tr>
+          <th>Gender:</th>
+          <td id='gender'></td>
+        </tr>
+        <tr>
+          <th>Date of Birth:</th>
+          <td id='birthdate'></td>
+        </tr>
+      </table>
+      <h2>Observation Resource</h2>
+      <table>
+        <tr>
+          <th>Height:</th>
+          <td id='height'></td>
+        </tr>
+        <tr>
+          <th>Systolic Blood Pressure:</th>
+          <td id='systolicbp'></td>
 
-
-          <div class="jqm-footer">
-              <img src="./src/images/img_cipherome_wordmark.png" height="20px">
-              <div>
-                  <span class="font-style-footer font-color-cg"><b>Lighthouse Pharmacogenomics Report</b></span>
-              </div>
-              <span class="font-style-footer font-color-cg">The information contained in the Lighthouse report is intended to be used by a licensed physician or licensed healthcare professional and is meant to enhance, not be a substitute for, professional medical advice. Prescribing medications should only be done after consulting with a licensed physician or licensed healthcare professional, and must take into account the patient’s medical history and concomitant medications.</span>
-          </div><!-- /footer -->
-      </div><!-- /content -->
-
-      <div data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a">
-          <div class="panel-menu">
-              <img src="./src/images/ic_menu.png" width="23.25px" height="19.5px">
-          </div>
-          <div class="category">
-              <div class="card">
-                  <div class="li-header selected" id="heading_summary"
-                      onclick="window.location.replace('/dashboard/report_viewer/{{ member_service_id }}/summary');">
-                      <div class="btn">
-                          <span class="font-style-subtitle font-color-wh">Summary</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="category">
-              <div class="card">
-                  <div class="li-header not-select" id="heading_cadlology">
-                      <div class="btn">
-                          <span class="font-style-subtitle font-color-bk">Cardiology</span>
-                      </div>
-                  </div>
-                  <div id="collapse_cardiology">
-                      <div class="card-body">
-                          <ul>
-                              <li onclick="alert(1);">
-                                <div class="li-item-selected">
-                                    <span class="font-style-body1 font-color-m">Clopidogrel</span>
-                                </div>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="btn-download">
-              <a href="#" target="_blank">
-              <img src="./src/images/ic_download.png" width="18px" height="16px"> <span class="font-style-caption font-color-wh">PDF File</span>
-              </a>
-          </div>
-      </div><!-- /panel -->
-      
+        </tr>
+        <tr>
+          <th>Diastolic Blood Pressure:</th>
+          <td id='diastolicbp'></td>
+        </tr>
+        <tr>
+          <th>LDL:</th>
+          <td id='ldl'></td>
+        </tr>
+        <tr>
+          <th>HDL:</th>
+          <td id='hdl'></td>
+        </tr>
+      </table>
     </div>
     <!-- Required JS files to enable this page to embed within an MPage -->
     <!--
@@ -189,12 +82,7 @@
     <!-- Prevent session bleed caused by single threaded embedded browser and sessionStorage API -->
     <!-- https://github.com/cerner/fhir-client-cerner-additions -->
     <script src='./lib/js/fhir-client-cerner-additions-1.0.0.js'></script>
-
-    <script src='./src/js/report_viewer.js'></script>
-    <script src='./src/js/jquery.js'></script>
-    <script src='./src/js/index.js'></script>
-    <script src='./src/js/jquery.mobile-1.4.5.min.js'></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
       extractData().then(
         //Display Patient Demographics and Observations if extractData was success
